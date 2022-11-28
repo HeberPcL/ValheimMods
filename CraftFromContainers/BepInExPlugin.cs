@@ -136,8 +136,8 @@ namespace CraftFromContainers
                     && container?.transform != null
                     && container.GetInventory() != null
                     && (m_range.Value <= 0 || Vector3.Distance(center, container.transform.position) < m_range.Value)
-                    //&& (!PrivateArea.CheckInPrivateArea(container.transform.position) || PrivateArea.CheckAccess(container.transform.position, 0f, true))
-                    //&& (!container.m_checkGuardStone || PrivateArea.CheckAccess(container.transform.position, 0f, false, false))
+                    && (PrivateArea.CheckAccess(container.transform.position, 0f, true))
+                    && (!container.m_checkGuardStone || PrivateArea.CheckAccess(container.transform.position, 0f, false, false))
                     && Traverse.Create(container).Method("CheckAccess", new object[] { Player.m_localPlayer.GetPlayerID() }).GetValue<bool>() && !container.IsInUse())
                 {
                     //container.GetComponent<ZNetView>()?.ClaimOwnership();
